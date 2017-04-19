@@ -21,9 +21,9 @@ public interface AppConstant {
 	
 	String AdminStates="/adminStates";
 	String SAVE_STATE="/saveState";
-	String ADMIN_DELETE_STATE="/deleteState";
+	String ADMIN_INACTIVE_STATE="/inactiveState";
+	String ADMIN_ACTIVE_STATE="/activeState";
 	String ADMIN_EDIT_STATE="/editState";
-	
 	String SAVE_CITY="/saveCity";
 	
 

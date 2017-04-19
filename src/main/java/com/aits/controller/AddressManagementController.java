@@ -78,22 +78,36 @@ public class AddressManagementController implements AppConstant {
 
 
 
-	@RequestMapping(value=ADMIN_DELETE_STATE,method=RequestMethod.GET)
-	public String deleteState(@RequestParam("stateId")int stateId,Model model)throws Exception{
+	@RequestMapping(value=ADMIN_INACTIVE_STATE,method=RequestMethod.GET)
+	public String inactiveState(@RequestParam("stateId")int stateId,Model model)throws Exception{
 
 		RestTemplate restTemplate=new RestTemplate();
 		StateMasterDto dto=new StateMasterDto();
 		dto.setStateId(stateId);
 
-		String stateListResponce=restTemplate.postForObject(URI+ADMIN_DELETE_STATE,dto, String.class);
+		String stateListResponce=restTemplate.postForObject(URI+ADMIN_INACTIVE_STATE,dto, String.class);
 		StateMasterDto stateList=new ObjectMapper().readValue(stateListResponce, StateMasterDto.class);
 		model.addAttribute("stateList",stateList.getStateMasterList());
 		model.addAttribute("stateMasterDto",new StateMasterDto());
-		model.addAttribute("msg","State delete successfull!!");
+		model.addAttribute("msg","State inactive successfull!!");
 		return"admin/addState";	
 	}
 
+	@RequestMapping(value=ADMIN_ACTIVE_STATE,method=RequestMethod.GET)
+	public String activeState(@RequestParam("stateId")int stateId,Model model)throws Exception{
 
+		RestTemplate restTemplate=new RestTemplate();
+		StateMasterDto dto=new StateMasterDto();
+		dto.setStateId(stateId);
+
+		String stateListResponce=restTemplate.postForObject(URI+ADMIN_ACTIVE_STATE,dto, String.class);
+		StateMasterDto stateList=new ObjectMapper().readValue(stateListResponce, StateMasterDto.class);
+		model.addAttribute("stateList",stateList.getStateMasterList());
+		model.addAttribute("stateMasterDto",new StateMasterDto());
+		model.addAttribute("msg","State Active successfull!!");
+		return"admin/addState";	
+	}
+	
 
 
 	/*****************************city Operations****************************************/
@@ -121,10 +135,8 @@ public class AddressManagementController implements AppConstant {
 	@RequestMapping(value=SAVE_CITY, method = RequestMethod.POST)
 	public String saveCity(@ModelAttribute("cityMasterDto")CityMasterDto cityMasterDto,@RequestParam("stateId")int stateId ,Model model)throws Exception {
 		StateMaster stateMaster=new StateMaster();
-		
 		stateMaster.setStateId(stateId);
-
-		cityMasterDto.setStateMaster(stateMaster);;
+     	cityMasterDto.setStateMaster(stateMaster);
 
 		RestTemplate restTemplate = new RestTemplate();
 

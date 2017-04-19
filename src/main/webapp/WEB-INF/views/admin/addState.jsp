@@ -30,7 +30,7 @@
 							<form:hidden path="stateId" />
 							<form:input path="stateName" class="form-control"
 								placeholder="Enter State..." />
-							<form:hidden path="isActive" value="isActive"/>
+							<form:hidden path="isActive" value="isActive" />
 						</div>
 						<button type="submit" class="btn btn-block btn-primary btn-sm">submit</button>
 					</form:form>
@@ -64,8 +64,8 @@
           </c:if> <c:if test="${val=='I' }">
                        Inactive
          </c:if></td>
-									<td><a href="deleteState?stateId=${state.stateId}">Active</a>/
-										<a href="deleteState?stateId=${state.stateId}">Deactive</a>
+									<td><a href="activeState?stateId=${state.stateId}">Active</a>/
+										<a href="inactiveState?stateId=${state.stateId}">Inactive</a>
 									<td><a href="editState?stateId=${state.stateId}">Edit</a></td>
 
 								</tr>
