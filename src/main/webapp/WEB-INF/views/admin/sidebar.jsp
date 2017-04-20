@@ -35,7 +35,7 @@
 				</span>
 			</a>
 				<ul class="treeview-menu">
-					<li class="active"><a href="categoryMgmt"><i
+					<li class="active"><a href="/ECOMM/getCategoryMasterList"><i
 							class="fa fa-circle-o"></i>Category Mgmt</a></li>
 					<li><a href="index2.html"><i class="fa fa-circle-o"></i>
 							Sub-Category Mgmt</a></li>

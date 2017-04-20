@@ -21,17 +21,14 @@
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-		<%-- 	<!-- Content Header (Page header) -->
+		
+		<% EndUserDetailsDto userdto=(EndUserDetailsDto)session.getAttribute("LOGGEDIN_USER"); %>
+			<%if(userdto!=null){%>
 			
-			
-			<% EndUserDetailsDto userdto=(EndUserDetailsDto)session.getAttribute("LOGGEDIN_USER"); %>
-     		Session value :: <%=userdto.getUserFirstName()%>
-
-			<!-- Main content -->
-			<center>
-				<h4 style="color: green;">Welcome ${endUserDetailsDtoResponse.userFirstName}</h4>
-			</center>
-			<!-- /.content --> --%>
+				<h6>Hello Session: <%=userdto.getUserFirstName() %></h6>  
+				
+			<% } %>
+		
 		</div>
 
 

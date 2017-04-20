@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,14 +21,34 @@
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<div class="box-body">
-					<form role="form">
-						<!-- text input -->
-						<div class="form-group">
-							<label>Category</label> <input type="text" class="form-control"
-								placeholder="Enter Category...">
-						</div>
-						<button type="button" class="btn btn-block btn-primary btn-sm">submit</button>
-					</form>
+					<c:choose>
+						    <c:when test="${categoryMasterDtoResponse.categoryMasterId eq 0}">
+						      <form action="insertCategoryMaster" method="post"  modelAttribute="categoryMasterDto">
+									<!-- text input -->
+											<div class="form-group">
+												<label>Category</label> <input type="text" class="form-control"
+													placeholder="Enter Category..." name="categoryMasterName">
+											</div>		
+																			
+									<button type="submit" class="btn btn-block btn-primary btn-sm">ADD</button>
+								</form>
+						    </c:when>
+						    <c:otherwise>
+						       <form action="/ECOMM/updateCategoryMaster" method="post"  modelAttribute="categoryMasterDto">
+									<!-- text input -->
+											<div class="form-group">
+												<input type="hidden" name="categoryMasterId" value="${categoryMasterDtoResponse.categoryMasterId}">
+											
+												<label>Category</label> <input type="text" class="form-control"
+													placeholder="Enter Category..." name="categoryMasterName" value="${categoryMasterDtoResponse.categoryMasterName}">
+													 
+											</div>		
+																			
+									<button type="submit" class="btn btn-block btn-primary btn-sm">Update</button>
+								</form>
+						    </c:otherwise>
+						</c:choose>
+				
 				</div>
 			</div>
 			<div class="col-md-3"></div>
@@ -34,86 +56,49 @@
 			<div>
 				<!-- /.box-header -->
 				<div class="box-body">
-					<table id="example1" class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th>Rendering engine</th>
-								<th>Browser</th>
-								<th>Platform(s)</th>
-								<th>Engine version</th>
-								<th>CSS grade</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Trident</td>
-								<td>Internet Explorer 4.0</td>
-								<td>Win 95+</td>
-								<td>4</td>
-								<td>X</td>
-							</tr>
-							<tr>
-								<td>Trident</td>
-								<td>Internet Explorer 5.0</td>
-								<td>Win 95+</td>
-								<td>5</td>
-								<td>C</td>
-							</tr>
-							<tr>
-								<td>Trident</td>
-								<td>Internet Explorer 5.5</td>
-								<td>Win 95+</td>
-								<td>5.5</td>
-								<td>A</td>
-							</tr>
-							<tr>
-								<td>Trident</td>
-								<td>Internet Explorer 6</td>
-								<td>Win 98+</td>
-								<td>6</td>
-								<td>A</td>
-							</tr>
-							<tr>
-								<td>Trident</td>
-								<td>Internet Explorer 7</td>
-								<td>Win XP SP2+</td>
-								<td>7</td>
-								<td>A</td>
-							</tr>
-							<tr>
-								<td>Trident</td>
-								<td>AOL browser (AOL desktop)</td>
-								<td>Win XP</td>
-								<td>6</td>
-								<td>A</td>
-							</tr>
-							<tr>
-								<td>Gecko</td>
-								<td>Firefox 1.0</td>
-								<td>Win 98+ / OSX.2+</td>
-								<td>1.7</td>
-								<td>A</td>
-							</tr>
+					<c:if
+						test="${!empty categoryMasterDtoResponse.getCategoryMasterList()}">
+
+						<table id="example1" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>Cateory Id</th>
+									<th>Cateory Name</th>
+									<th>Operation</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<c:forEach
+										items="${categoryMasterDtoResponse.getCategoryMasterList()}"
+										var="categoryList">
+										<td>${categoryList.categoryMasterId}</td>
+										<td>${categoryList.categoryMasterName}</td>
+										<td>
+										<a href="getCategoryMasterInformationById/${categoryList.categoryMasterId}"><button type="button" class="btn bg-purple margin">Update</button></a>
+										<a href="#"><button type="button" class="btn bg-orange margin">Delete</button></a>
+ 										
+										</td>
+										</tr>
+									</c:forEach>
+								
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>Cateory Id</th>
+									<th>Cateory Name</th>
+									<th>Operation</th>
+								</tr>
+							</tfoot>
+						</table>
+
+					</c:if>
 
 
-
-
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>Rendering engine</th>
-								<th>Browser</th>
-								<th>Platform(s)</th>
-								<th>Engine version</th>
-								<th>CSS grade</th>
-							</tr>
-						</tfoot>
-					</table>
 				</div>
 				<!-- /.box-body -->
 			</div>
-
-
+		
 		</div>
 
 

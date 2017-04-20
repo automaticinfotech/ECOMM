@@ -8,12 +8,12 @@ import com.aits.dto.EndUserDetailsDto;
 @Component
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter
 {
- /*@Override
+ @Override
  public boolean preHandle(HttpServletRequest request,
    HttpServletResponse response, Object handler) throws Exception
  {
   String uri = request.getRequestURI();
-  if(!uri.endsWith("based on required method set it method name"))
+  if(uri.endsWith("getCategoryMasterList") || uri.endsWith("adminDashboard"))
   {
    EndUserDetailsDto userData = (EndUserDetailsDto) request.getSession().getAttribute("LOGGEDIN_USER");
    if(userData == null)
@@ -23,5 +23,5 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter
    }   
   }
   return true;
- }*/
+ }
 }
