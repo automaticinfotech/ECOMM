@@ -30,8 +30,12 @@ public interface AppConstant {
 	String SAVE_STATE="/saveState";
 	String ADMIN_DELETE_STATE="/deleteState";
 	String ADMIN_EDIT_STATE="/editState";
-	
 	String SAVE_CITY="/saveCity";
+	
+	/*Discount Mgmt*/
+	String GET_DISCOUNT_LIST="/getDiscountMasterList";
+	String ADD_DISCOUNT="/addDiscountMasterInformation";
+	String GET_DISCOUNT_INFO_BY_ID="/getDiscountMasterInformationById/";
 	
 
 }
