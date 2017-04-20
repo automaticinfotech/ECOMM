@@ -38,5 +38,6 @@ public interface AppConstant {
 	String ADD_DISCOUNT="/addDiscountMasterInformation";
 	String GET_DISCOUNT_INFO_BY_ID="/getDiscountMasterInformationById/";
 	
+	
 
 }
