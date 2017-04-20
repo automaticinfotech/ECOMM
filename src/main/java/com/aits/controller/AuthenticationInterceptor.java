@@ -8,7 +8,7 @@ import com.aits.dto.EndUserDetailsDto;
 @Component
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter
 {
- @Override
+ /*@Override
  public boolean preHandle(HttpServletRequest request,
    HttpServletResponse response, Object handler) throws Exception
  {
@@ -23,5 +23,5 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter
    }   
   }
   return true;
- }
+ }*/
 }
