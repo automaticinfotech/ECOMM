@@ -10,6 +10,7 @@ import com.aits.model.UserMaster;
 import com.aits.model.WishListManagement;
 
 
+
 public class EndUserDetailsDto {
 	private int endUserId;
 	private String userFirstName;

@@ -26,12 +26,11 @@ public class AddressManagementController implements AppConstant {
 		return "admin/adminDashboard";
 	}
 
-	
 	/*****************************State Operations****************************************/
 
 	@RequestMapping(value=AdminStates, method = RequestMethod.GET)
 	public String addState(Model model)throws Exception {
-
+ok
 		model.addAttribute("stateMasterDto",new StateMasterDto());
 		RestTemplate restTemplate=new RestTemplate();
 		String stateListResponce=restTemplate.postForObject(URI+AdminStates,StateMasterDto.class, String.class);

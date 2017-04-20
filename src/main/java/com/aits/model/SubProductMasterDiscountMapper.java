@@ -14,8 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.aits.FactoryClasses.JsonDateSerializer;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name = "SubProductMaster_DiscountMapper")
@@ -26,9 +28,11 @@ public class SubProductMasterDiscountMapper {
 	@Column(name = "SubProductMasterDiscountMapper_Id")
 	private int subProductMasterDiscountMapperId;
 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	@Column(name = "SubProductMasterDiscountMapper_FromDate", length = 50)
 	private Date subProductMasterDiscountMapperFromDate;
 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	@Column(name = "SubProductMasterDiscountMapper_ToDate", length = 50)
 	private Date subProductMasterDiscountMapperToDate;
 	
