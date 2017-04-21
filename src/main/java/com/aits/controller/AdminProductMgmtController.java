@@ -4,12 +4,15 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.aits.constant.AppConstant;
@@ -64,5 +67,16 @@ public class AdminProductMgmtController implements AppConstant{
 		model.addAttribute("categoryMasterDtoResponse",dto);
 		return "admin/addCategory";
 	}
+	
+	//AJAX CALL FOR UPDATE CATEGORY STATUS
+	@RequestMapping(value=UPDATE_CATEGORY_STATUS, method = RequestMethod.POST,consumes= MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody  String updateCategoryStatus(@RequestBody CategoryMasterDto categoryMasterDto) throws IOException {
+		RestTemplate restTemplate = new RestTemplate();
+		System.out.println("in controller method");
+		String categoryMasterDtoResponse = restTemplate.postForObject(URI+UPDATE_CATEGORY_MASTER, categoryMasterDto,String.class);
+		return "admin/addCategory";
+	}
+	
+	
 
 }

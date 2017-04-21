@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
+	
+	
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -65,6 +67,7 @@
 									<th>Cateory Id</th>
 									<th>Cateory Name</th>
 									<th>Operation</th>
+									<th>Status</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -75,10 +78,21 @@
 										<td>${categoryList.categoryMasterId}</td>
 										<td>${categoryList.categoryMasterName}</td>
 										<td>
-										<a href="getCategoryMasterInformationById/${categoryList.categoryMasterId}"><button type="button" class="btn bg-purple margin">Update</button></a>
-										<a href="#"><button type="button" class="btn bg-orange margin">Delete</button></a>
- 										
+											<a href="getCategoryMasterInformationById/${categoryList.categoryMasterId}"><button type="button" class="btn bg-purple margin">Update</button></a>
 										</td>
+										<td>
+										<c:choose>
+						    			<c:when test="${categoryList.isActive eq 'A'}">
+						    				
+												<input type="checkbox" checked data-toggle="toggle" onchange="updateCategoryStatus(${categoryList.categoryMasterId},'${categoryList.categoryMasterName}','I')">
+						    			</c:when>
+						    			<c:otherwise>
+												<input type="checkbox" data-toggle="toggle" onchange="updateCategoryStatus(${categoryList.categoryMasterId},'${categoryList.categoryMasterName}','A')">
+						    			</c:otherwise>
+										</c:choose>										
+										</td>
+										
+										
 										</tr>
 									</c:forEach>
 								
@@ -93,6 +107,8 @@
 						</table>
 
 					</c:if>
+					
+	
 
 
 				</div>
@@ -143,7 +159,34 @@
 				});
 			});
 		</script>
+		
+		
+		<script>
+			function updateCategoryStatus(id,name,status) {
+				var data = {"categoryMasterId":id,"categoryMasterName":name, "isActive": status}
+				 $.ajax({
+					type : "POST",
+					url : "/ECOMM/updateCategoryStatus",
+					datatype : "application/json",
+					contentType: "application/json; charset=utf-8",
+					data : JSON.stringify(data),
+					timeout : 100000,
+					success : function(data) {
+						//alert("success");
+					},
+					error : function(e) {
+						//alert("error");
+					},
+					done : function(e) {
+						console.log("DONE");
+					}
+				});
+			    
+			};
+			</script>
 
+ 
+ 
 	</div>
 </body>
 </html>

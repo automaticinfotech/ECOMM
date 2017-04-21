@@ -21,6 +21,7 @@ public interface AppConstant {
 	String GET_CATEGORY_MASTER_INFORMATION_BY_ID = "/getCategoryMasterInformationById/{categoryMasterId}";
 	String GET_CATEGORY_MASTER_INFORMATION_BY_CATEGORY_ID = "/getCategoryMasterInformationById/"; 
 	String UPDATE_CATEGORY_MASTER = "/updateCategoryMaster";
+	String UPDATE_CATEGORY_STATUS = "/updateCategoryStatus";
 	
 	/*   added by  santosh  12/04/2017 */	
 	
