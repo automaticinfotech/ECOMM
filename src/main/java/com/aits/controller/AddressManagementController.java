@@ -26,8 +26,8 @@ public class AddressManagementController implements AppConstant {
 		return "admin/adminDashboard";
 	}
 
-	
-	
+
+
 	/*****************************State Operations****************************************/
 
 	@RequestMapping(value=AdminStates, method = RequestMethod.GET)
@@ -38,6 +38,7 @@ public class AddressManagementController implements AppConstant {
 		String stateListResponce=restTemplate.postForObject(URI+AdminStates,StateMasterDto.class, String.class);
 		StateMasterDto stateList=new ObjectMapper().readValue(stateListResponce, StateMasterDto.class);
 		model.addAttribute("stateList",stateList.getStateMasterList());
+		model.addAttribute("operation","Add State");
 
 		return "admin/addState";
 	}
@@ -52,6 +53,7 @@ public class AddressManagementController implements AppConstant {
 		StateMasterDto stDto=new ObjectMapper().readValue(stateMasterDtoResponce,StateMasterDto.class);
 		model.addAttribute("stateList",stDto.getStateMasterList());
 		model.addAttribute("stateMasterDto",stateMasterDto);
+		model.addAttribute("operation","Add State");
 		model.addAttribute("msg","State Save Successfull!!");
 
 		return "admin/addState";
@@ -70,7 +72,7 @@ public class AddressManagementController implements AppConstant {
 		StateMasterDto stDto=new ObjectMapper().readValue(stateMasterDtoResponce,StateMasterDto.class);
 
 		model.addAttribute("stateList",stDto.getStateMasterList());
-
+		model.addAttribute("operation","Update State");
 
 		model.addAttribute("stateMasterDto",stDto);
 
@@ -91,6 +93,7 @@ public class AddressManagementController implements AppConstant {
 		StateMasterDto stateList=new ObjectMapper().readValue(stateListResponce, StateMasterDto.class);
 		model.addAttribute("stateList",stateList.getStateMasterList());
 		model.addAttribute("stateMasterDto",new StateMasterDto());
+		model.addAttribute("operation","Add State");
 		model.addAttribute("msg","State inactive successfull!!");
 		return"admin/addState";	
 	}
@@ -106,10 +109,11 @@ public class AddressManagementController implements AppConstant {
 		StateMasterDto stateList=new ObjectMapper().readValue(stateListResponce, StateMasterDto.class);
 		model.addAttribute("stateList",stateList.getStateMasterList());
 		model.addAttribute("stateMasterDto",new StateMasterDto());
+		model.addAttribute("operation","Add State");
 		model.addAttribute("msg","State Active successfull!!");
 		return"admin/addState";	
 	}
-	
+
 
 
 	/*****************************city Operations****************************************/
@@ -124,7 +128,12 @@ public class AddressManagementController implements AppConstant {
 		RestTemplate restTemplate=new RestTemplate();
 		String stateListResponce=restTemplate.postForObject(URI+AdminStates,StateMasterDto.class, String.class);
 		StateMasterDto stateList=new ObjectMapper().readValue(stateListResponce, StateMasterDto.class);
+		
 		model.addAttribute("stateList",stateList.getStateMasterList());
+		
+		String cityListResponce=restTemplate.postForObject(URI+ADMIN_CITYS,CityMasterDto.class, String.class);
+		CityMasterDto cityListDto=new ObjectMapper().readValue(cityListResponce, CityMasterDto.class);
+		model.addAttribute("cityList",cityListDto.getCityMasterList());
 
 		model.addAttribute("cityMasterDto",new CityMasterDto());
 
@@ -135,18 +144,21 @@ public class AddressManagementController implements AppConstant {
 
 
 	@RequestMapping(value=SAVE_CITY, method = RequestMethod.POST)
-	public String saveCity(@ModelAttribute("cityMasterDto")CityMasterDto cityMasterDto,@RequestParam("stateId")int stateId ,Model model)throws Exception {
-		StateMaster stateMaster=new StateMaster();
-		stateMaster.setStateId(stateId);
-     	cityMasterDto.setStateMaster(stateMaster);
-
+	public String saveCity(@ModelAttribute("cityMasterDto")CityMasterDto cityMasterDto,Model model)throws Exception {
 		RestTemplate restTemplate = new RestTemplate();
 
-		String cityMasterDtoResponce=restTemplate.postForObject(URI+SAVE_CITY,cityMasterDto,String.class);
+	
+	
+		restTemplate.postForObject(URI+SAVE_CITY,cityMasterDto,String.class);
+	
+		String stateListResponce=restTemplate.postForObject(URI+AdminStates,StateMasterDto.class, String.class);
+		StateMasterDto stateListDto=new ObjectMapper().readValue(stateListResponce, StateMasterDto.class);
+		model.addAttribute("stateList",stateListDto.getStateMasterList());
 
-		CityMasterDto stDto=new ObjectMapper().readValue(cityMasterDtoResponce,CityMasterDto.class);
-		model.addAttribute("stateList",stDto.getStateMaster().getStateMasterList());
-		model.addAttribute("cityList",stDto.getCityMasterList());
+		String cityListResponce=restTemplate.postForObject(URI+ADMIN_CITYS,CityMasterDto.class, String.class);
+		CityMasterDto cityListDto=new ObjectMapper().readValue(cityListResponce, CityMasterDto.class);
+		model.addAttribute("cityList",cityListDto.getCityMasterList());
+		
 		model.addAttribute("cityMasterDto",new CityMasterDto());
 		model.addAttribute("msg","City Save Successfull!!");
 

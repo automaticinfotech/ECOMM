@@ -26,7 +26,7 @@
 						modelAttribute="cityMasterDto">
 
 						<div class="form-group">
-							<label>Select State</label> <select class="form-control" name="stateId">
+							<label>Select State</label> <select class="form-control" name="stateMaster.stateId">
 								
 								<c:forEach items="${stateList}" var="state">	
 								
@@ -54,10 +54,11 @@
 					<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								
+								<th>City ID</th>
 								<th>City Name</th>
 								<th>State Name</th>
 								<th>Operation</th>
+								<th>Status</th>
 
 							</tr>
 						</thead>
@@ -67,6 +68,8 @@
 									<td>${city.cityId}</td>
 									<td>${city.cityName }</td>
 									<td>${city.stateMaster.stateName}</td>
+									<td>UPDATE</td>
+									<td>Status</td>
 
 
 								</tr>
@@ -97,15 +100,28 @@
 		<jsp:include page="footer.jsp"></jsp:include>
 
 		<!-- DataTables -->
-		<%-- <script
+		<script
 			src="${pageContext.request.contextPath}/resources/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
-
-		 --%>
+		<!-- Bootstrap 3.3.6 -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/bootstrap/js/bootstrap.min.js"></script>
+		<!-- DataTables -->
 		<script
 			src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
 		<script
 			src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
-
+		<!-- SlimScroll -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+		<!-- FastClick -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/plugins/fastclick/fastclick.js"></script>
+		<!-- AdminLTE App -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/dist/js/app.min.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/dist/js/demo.js"></script>
 		<script>
 			$(function() {
 				$("#example1").DataTable();
