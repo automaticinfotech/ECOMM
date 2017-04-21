@@ -5,9 +5,10 @@ public interface AppConstant {
 	String ADMIN_LOGIN_AUTHENTICATION = "/adminLoginAuthentication";
 	String ADMIN_SIGN_OUT = "/adminSignOut";
 	String USER_LOGIN = "/userLogin";
-	String URI = "http://localhost:8080/ECOMM-WS/";
-	
 
+	String URI = "http://localhost:8080/ECOMM-WS/";
+
+		
 	String ROOT = "/";
 	String HOME = "/home";
 	String HELLO = "/Hello";
@@ -15,20 +16,46 @@ public interface AppConstant {
 	String GET_PRODUCT_BY_ID = "/getProductById";
 	
 	
-	/*   added by  santosh  12/04/2017 */	
+	/*Product Mgmt*/
+	String GET_CATEGORY_MASTER_LIST = "/getCategoryMasterList";
+	String INSERT_CATEGORY_MASTER = "/insertCategoryMaster";
+	String GET_CATEGORY_MASTER_INFORMATION_BY_ID = "/getCategoryMasterInformationById/{categoryMasterId}";
+	String GET_CATEGORY_MASTER_INFORMATION_BY_CATEGORY_ID = "/getCategoryMasterInformationById/"; 
+	String UPDATE_CATEGORY_MASTER = "/updateCategoryMaster";
+	String UPDATE_CATEGORY_STATUS = "/updateCategoryStatus";
 	
+
 	
-	
+	/*   added by  santosh  12/04/2017 */		
 	String AdminStates="/adminStates";
 	String SAVE_STATE="/saveState";
-	String ADMIN_DELETE_STATE="/deleteState";
+	String ADMIN_UPDATE_STATE_STATUS="/updateStateStatus";
 	String ADMIN_EDIT_STATE="/editState";
-	
 	String SAVE_CITY="/saveCity";
+	String ADMIN_EDIT_CITY="/editCity";
+	String ADMIN_CITYS="adminAllCitys";
+	String ADMIN_UPDATE_CITY_STATUS="/updateCityStatus";
 	
+	
+	
+	/*Discount Mgmt*/
+	String GET_DISCOUNT_LIST="/getDiscountMasterList";
+	String ADD_DISCOUNT="/addDiscountMasterInformation";
+	String UPDATE_DISCOUNT="/updateDiscountMasterInformation";
+	String GET_DISCOUNT_INFO_BY_ID="/getDiscountMasterInformationById/";
+	String GET_DISCOUNT_MAPPER_LIST="/getSubProductDiscountMapperList";
+	String GET_SUB_PRODUCT_LIST="/getSubProductMasterList";
+	String ADD_DISCOUNT_MAPPER_INFO="/insertSubProductDiscountMapperInformation";
+	
+	 
     //user registration
 	String USER_REGISTRATION="/registration";
 	String USER_PARTIALREGISTRATION="/partialRegistration";
 	String USER_CENTRALREGISTRATION="/centralRegistration";
 	String USER_FINALREGISTRATION="/finalRegistration";
+
+
 }
+
+
+

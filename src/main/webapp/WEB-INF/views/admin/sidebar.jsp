@@ -35,7 +35,7 @@
 				</span>
 			</a>
 				<ul class="treeview-menu">
-					<li class="active"><a href="categoryMgmt"><i
+					<li class="active"><a href="/ECOMM/getCategoryMasterList"><i
 							class="fa fa-circle-o"></i>Category Mgmt</a></li>
 					<li><a href="index2.html"><i class="fa fa-circle-o"></i>
 							Sub-Category Mgmt</a></li>
@@ -58,6 +58,17 @@
 							State Mgmt</a></li>
 				</ul></li>
 
+             <li class="treeview"><a href="#"> <i class="fa fa-dashboard"></i>
+					<span>Discount Mgmt</span> <span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li class="active"><a href="/ECOMM/getDiscountMasterList"><i
+							class="fa fa-circle-o"></i>Add Discount</a></li>
+					<li><a href="/ECOMM/getSubProductDiscountMapperList"><i class="fa fa-circle-o"></i>
+							Map Discount</a></li>
+				</ul></li>
 
 			<li class="treeview"><a href="#"> <i class="fa fa-laptop"></i>
 					<span>UI Elements</span> <span class="pull-right-container">

@@ -8,9 +8,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Admin|Add State</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
 
+<script>
+			function updateStateStatus(id,name,status) {
+				
+				var data = {"stateId":id,"stateName":name, "isActive": status}
+				 $.ajax({
+					type : "POST",
+					url : "/ECOMM/updateStateStatus",
+					datatype : "application/json",
+					contentType: "application/json; charset=utf-8",
+					data : JSON.stringify(data),
+					timeout : 100000,
+					success : function(data) {
+						//alert("success");
+					},
+					error : function(e) {
+						//alert("error");
+					},
+					done : function(e) {
+						console.log("DONE");
+					}
+				});
+			    
+			};
+			</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -26,11 +48,11 @@
 						modelAttribute="stateMasterDto">
 						<!-- text input -->
 						<div class="form-group">
-							<label>Add State</label>
+							<label>${operation }</label>
 							<form:hidden path="stateId" />
 							<form:input path="stateName" class="form-control"
 								placeholder="Enter State..." />
-							<form:hidden path="isActive" value="isActive"/>
+
 						</div>
 						<button type="submit" class="btn btn-block btn-primary btn-sm">submit</button>
 					</form:form>
@@ -41,14 +63,13 @@
 			<div>
 				<!-- /.box-header -->
 				<div class="box-body">
-					<table id="example1" class="table table-bordered table-striped">
+					<table id="example2" class="table table-bordered table-hover">
 						<thead>
 							<tr>
-
+								<th>State ID</th>
 								<th>State Name</th>
-								<th>Status</th>
-								<th>Change Status</th>
 								<th>Operation</th>
+								<th>Status</th>
 
 							</tr>
 						</thead>
@@ -56,17 +77,24 @@
 
 							<c:forEach items="${stateList}" var="state">
 								<tr>
-
+									<td>${state.stateId}</td>
 									<td>${state.stateName }</td>
-									<td><c:set var="val" value="${state.isActive}"></c:set> <c:if
-											test="${val=='A' }">
-                      Active
-          </c:if> <c:if test="${val=='I' }">
-                       Inactive
-         </c:if></td>
-									<td><a href="deleteState?stateId=${state.stateId}">Active</a>/
-										<a href="deleteState?stateId=${state.stateId}">Deactive</a>
-									<td><a href="editState?stateId=${state.stateId}">Edit</a></td>
+
+
+									<td><a href="editState?stateId=${state.stateId}"><button
+												type="button" class="btn bg-purple margin">Update</button></a></td>
+
+									<td><c:choose>
+											<c:when test="${state.isActive eq 'A'}">
+
+												<input type="checkbox" checked data-toggle="toggle"
+													onchange="updateStateStatus(${state.stateId},'${state.stateName}','I')">
+											</c:when>
+											<c:otherwise>
+												<input type="checkbox" data-toggle="toggle"
+													onchange="updateStateStatus(${state.stateId},'${state.stateName}','A')">
+											</c:otherwise>
+										</c:choose></td>
 
 								</tr>
 
@@ -95,25 +123,39 @@
 
 		<jsp:include page="footer.jsp"></jsp:include>
 
-		<!-- DataTables -->
-		<%-- <script
+		<script
 			src="${pageContext.request.contextPath}/resources/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
-		 --%>
+		<!-- Bootstrap 3.3.6 -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/bootstrap/js/bootstrap.min.js"></script>
+		<!-- DataTables -->
 		<script
 			src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
 		<script
 			src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
-
+		<!-- SlimScroll -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+		<!-- FastClick -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/plugins/fastclick/fastclick.js"></script>
+		<!-- AdminLTE App -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/dist/js/app.min.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/dist/js/demo.js"></script>
+		<!-- page script -->
 		<script>
 			$(function() {
 				$("#example1").DataTable();
 				$('#example2').DataTable({
 					"paging" : true,
-					"lengthChange" : false,
+					"lengthChange" : true,
 					"searching" : false,
-					"ordering" : true,
+					"ordering" : false,
 					"info" : true,
-					"autoWidth" : false
+					"autoWidth" : true
 				});
 			});
 		</script>

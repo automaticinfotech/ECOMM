@@ -47,7 +47,8 @@ public class SubProductMaster {
 	@Column(name = "Is_Active", length = 2)
 	private String isActive;
 
-	@ManyToOne(targetEntity = ProductMaster.class, cascade =  CascadeType.ALL )
+	@ManyToOne(targetEntity = ProductMaster.class, cascade =  { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.REMOVE } )
 	@JoinColumn(name = "Fk_ProductMasterId")
 	private ProductMaster productMaster;
 

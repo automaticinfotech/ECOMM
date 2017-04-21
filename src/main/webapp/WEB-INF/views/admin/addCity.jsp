@@ -11,6 +11,31 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
 
+<script>
+			function updateCityStatus(id,status) {
+			
+				var data = {"cityId":id,"isActive": status}
+			
+				 $.ajax({
+					type : "POST",
+					url : "/ECOMM/updateCityStatus",
+					datatype : "application/json",
+					contentType: "application/json; charset=utf-8",
+					data : JSON.stringify(data),
+					timeout : 100000,
+					success : function(data) {
+						//alert("success");
+					},
+					error : function(e) {
+						//alert("error");
+					},
+					done : function(e) {
+						console.log("DONE");
+					}
+				});
+			    
+			};
+			</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -26,12 +51,15 @@
 						modelAttribute="cityMasterDto">
 
 						<div class="form-group">
-							<label>Select State</label> <select class="form-control" name="stateId">
-								
-								<c:forEach items="${stateList}" var="state">	
-								
-								
-								<option value="${state.stateId}">${state.stateName}</option>
+
+							<form:hidden path="cityId" />
+
+							<label>Select State</label> <select class="form-control"
+								name="stateMaster.stateId">
+
+								<c:forEach items="${stateList}" var="state">
+
+									<option value="${state.stateId}">${state.stateName}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -54,10 +82,11 @@
 					<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								
+								<th>City ID</th>
 								<th>City Name</th>
 								<th>State Name</th>
 								<th>Operation</th>
+								<th>Status</th>
 
 							</tr>
 						</thead>
@@ -67,6 +96,22 @@
 									<td>${city.cityId}</td>
 									<td>${city.cityName }</td>
 									<td>${city.stateMaster.stateName}</td>
+									<td><a href="editCity?cityId=${city.cityId}"><button
+												type="button" class="btn bg-purple margin">Update</button></a></td>
+									<td>
+									<c:choose>
+											<c:when test="${city.isActive eq 'A'}">
+
+												<input type="checkbox" checked data-toggle="toggle"
+													onchange="updateCityStatus(${city.cityId},'I')">
+											</c:when>
+											<c:otherwise>
+												<input type="checkbox" data-toggle="toggle"
+													onchange="updateCityStatus(${city.cityId},'A')">
+											</c:otherwise>
+									</c:choose>
+										
+										</td>
 
 
 								</tr>
@@ -97,15 +142,28 @@
 		<jsp:include page="footer.jsp"></jsp:include>
 
 		<!-- DataTables -->
-		<%-- <script
+		<script
 			src="${pageContext.request.contextPath}/resources/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
-
-		 --%>
+		<!-- Bootstrap 3.3.6 -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/bootstrap/js/bootstrap.min.js"></script>
+		<!-- DataTables -->
 		<script
 			src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
 		<script
 			src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
-
+		<!-- SlimScroll -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+		<!-- FastClick -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/plugins/fastclick/fastclick.js"></script>
+		<!-- AdminLTE App -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/dist/js/app.min.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script
+			src="${pageContext.request.contextPath}/resources/admin/dist/js/demo.js"></script>
 		<script>
 			$(function() {
 				$("#example1").DataTable();
