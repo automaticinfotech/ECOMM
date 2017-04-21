@@ -58,10 +58,6 @@ public interface AppConstant {
 	
 	
 	
-	
-	
-	
-	
 	/*   added by  santosh  12/04/2017 */		
 	String AdminStates="/adminStates";
 	String SAVE_STATE="/saveState";
