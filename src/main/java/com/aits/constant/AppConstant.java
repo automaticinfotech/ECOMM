@@ -5,7 +5,7 @@ public interface AppConstant {
 	String ADMIN_LOGIN_AUTHENTICATION = "/adminLoginAuthentication";
 	String ADMIN_SIGN_OUT = "/adminSignOut";
 	String USER_LOGIN = "/userLogin";
-	String URI = "http://localhost:8888/ECOMM-WS/";
+	String URI = "http://localhost:8080/ECOMM-WS/";
 	
 
 	String ROOT = "/";
@@ -26,5 +26,9 @@ public interface AppConstant {
 	
 	String SAVE_CITY="/saveCity";
 	
-
+    //user registration
+	String USER_REGISTRATION="/registration";
+	String USER_PARTIALREGISTRATION="/partialRegistration";
+	String USER_CENTRALREGISTRATION="/centralRegistration";
+	String USER_FINALREGISTRATION="/finalRegistration";
 }

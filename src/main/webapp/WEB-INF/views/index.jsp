@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Bootshop online Shopping cart</title>
+    <title>online Shopping cart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -36,6 +36,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${pageContext.request.contextPath}/resources/themes/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/resources/themes/images/ico/apple-touch-icon-57-precomposed.png">
 	<style type="text/css" id="enject"></style>
+	
   </head>
 <body>
 <div id="header">
@@ -105,12 +106,15 @@
 			</form>		
 		  </div>
 	</div>
-	
-
-	
-	
-	
 	</li>
+	
+	<!-- registration form -->
+	 <li class="">
+	 <br/>
+	 <a href="${pageContext.request.contextPath}/registration" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Sign Up</span></a>
+	</li>
+	
+	<!-- registration form -->
     </ul>
   </div>
 </div>
