@@ -8,6 +8,7 @@ public interface AppConstant {
 	String URI = "http://localhost:8080/ECOMM-WS/";
 	
 
+	
 	String ROOT = "/";
 	String HOME = "/home";
 	String HELLO = "/Hello";
@@ -109,6 +110,7 @@ public interface AppConstant {
 	String GET_SUB_PRODUCT_LIST="/getSubProductMasterList";
 	String ADD_DISCOUNT_MAPPER_INFO="/insertSubProductDiscountMapperInformation";
 	
+	 
 	
 
 	
