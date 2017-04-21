@@ -5,7 +5,7 @@ public interface AppConstant {
 	String ADMIN_LOGIN_AUTHENTICATION = "/adminLoginAuthentication";
 	String ADMIN_SIGN_OUT = "/adminSignOut";
 	String USER_LOGIN = "/userLogin";
-	String URI = "http://localhost:8080/ECOMM-WS/";
+	String URI = "http://localhost:8081/ECOMM-WS/";
 	
 
 	
@@ -62,12 +62,12 @@ public interface AppConstant {
 	/*   added by  santosh  12/04/2017 */		
 	String AdminStates="/adminStates";
 	String SAVE_STATE="/saveState";
-	String ADMIN_INACTIVE_STATE="/inactiveState";
-	String ADMIN_ACTIVE_STATE="/activeState";
+	String ADMIN_UPDATE_STATE_STATUS="/updateStateStatus";
 	String ADMIN_EDIT_STATE="/editState";
 	String SAVE_CITY="/saveCity";
+	String ADMIN_EDIT_CITY="/editCity";
 	String ADMIN_CITYS="adminAllCitys";
-
+	String ADMIN_UPDATE_CITY_STATUS="/updateCityStatus";
 	
 	
 	

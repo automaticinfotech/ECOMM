@@ -11,6 +11,31 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
 
+<script>
+			function updateCityStatus(id,status) {
+			
+				var data = {"cityId":id,"isActive": status}
+			
+				 $.ajax({
+					type : "POST",
+					url : "/ECOMM/updateCityStatus",
+					datatype : "application/json",
+					contentType: "application/json; charset=utf-8",
+					data : JSON.stringify(data),
+					timeout : 100000,
+					success : function(data) {
+						//alert("success");
+					},
+					error : function(e) {
+						//alert("error");
+					},
+					done : function(e) {
+						console.log("DONE");
+					}
+				});
+			    
+			};
+			</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -26,12 +51,15 @@
 						modelAttribute="cityMasterDto">
 
 						<div class="form-group">
-							<label>Select State</label> <select class="form-control" name="stateMaster.stateId">
-								
-								<c:forEach items="${stateList}" var="state">	
-								
-								
-								<option value="${state.stateId}">${state.stateName}</option>
+
+							<form:hidden path="cityId" />
+
+							<label>Select State</label> <select class="form-control"
+								name="stateMaster.stateId">
+
+								<c:forEach items="${stateList}" var="state">
+
+									<option value="${state.stateId}">${state.stateName}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -68,8 +96,22 @@
 									<td>${city.cityId}</td>
 									<td>${city.cityName }</td>
 									<td>${city.stateMaster.stateName}</td>
-									<td>UPDATE</td>
-									<td>Status</td>
+									<td><a href="editCity?cityId=${city.cityId}"><button
+												type="button" class="btn bg-purple margin">Update</button></a></td>
+									<td>
+									<c:choose>
+											<c:when test="${city.isActive eq 'A'}">
+
+												<input type="checkbox" checked data-toggle="toggle"
+													onchange="updateCityStatus(${city.cityId},'I')">
+											</c:when>
+											<c:otherwise>
+												<input type="checkbox" data-toggle="toggle"
+													onchange="updateCityStatus(${city.cityId},'A')">
+											</c:otherwise>
+									</c:choose>
+										
+										</td>
 
 
 								</tr>
