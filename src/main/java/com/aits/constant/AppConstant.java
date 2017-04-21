@@ -103,6 +103,7 @@ public interface AppConstant {
 	/*Discount Mgmt*/
 	String GET_DISCOUNT_LIST="/getDiscountMasterList";
 	String ADD_DISCOUNT="/addDiscountMasterInformation";
+	String UPDATE_DISCOUNT="/updateDiscountMasterInformation";
 	String GET_DISCOUNT_INFO_BY_ID="/getDiscountMasterInformationById/";
 	String GET_DISCOUNT_MAPPER_LIST="/getSubProductDiscountMapperList";
 	String GET_SUB_PRODUCT_LIST="/getSubProductMasterList";
