@@ -64,9 +64,9 @@
 				</span>
 			</a>
 				<ul class="treeview-menu">
-					<li class="active"><a href="getDiscountMasterList"><i
+					<li class="active"><a href="/ECOMM/getDiscountMasterList"><i
 							class="fa fa-circle-o"></i>Add Discount</a></li>
-					<li><a href="index2.html"><i class="fa fa-circle-o"></i>
+					<li><a href="/ECOMM/getSubProductDiscountMapperList"><i class="fa fa-circle-o"></i>
 							Map Discount</a></li>
 				</ul></li>
 

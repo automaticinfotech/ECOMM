@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-  
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Add Discount</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-     <div class="wrapper">
+	<div class="wrapper">
 		<jsp:include page="header.jsp"></jsp:include>
 		<jsp:include page="sidebar.jsp"></jsp:include>
 
@@ -21,15 +21,38 @@
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<div class="box-body">
-				   <h3 style="color: green;">${msg}</h3>
-					<form:form action="addDiscountMasterInformation" method="post" modelAttribute="discountMasterDto">
-					    <div class="form-group">
-							<label>Add Discount</label>
-							<input type="text" name="dicountMasterName" class="form-control"
-								placeholder="Enter Discount..." />
-						</div>
-						<button type="submit" class="btn btn-block btn-primary btn-sm">submit</button>
-					</form:form>
+					<h3 style="color: green;">${msg}</h3>
+					<c:choose>
+						<c:when test="${discountMasterDto.discountMasterId eq 0}">
+							<form:form action="addDiscountMasterInformation" method="post"
+								modelAttribute="discountMasterDto">
+								<div class="form-group">
+									<label>Add Discount</label> <input type="text"
+										name="dicountMasterName"
+										value="${discountMasterDto.dicountMasterName}"
+										class="form-control" placeholder="Enter Discount..." />
+								</div>
+								<button type="submit" class="btn btn-block btn-primary btn-sm">Submit</button>
+							</form:form>
+						</c:when>
+						<c:otherwise>
+							<form:form action="/ECOMM/updateDiscountMasterInformation" method="post"
+								modelAttribute="discountMasterDto">
+								<div class="form-group">
+									<input type="hidden" name="discountMasterId"
+										value="${discountMasterDto.discountMasterId}"
+										class="form-control" placeholder="Enter Discount..." />
+								</div>
+								<div class="form-group">
+									<label>Update Discount Name</label> <input type="text"
+										name="dicountMasterName"
+										value="${discountMasterDto.dicountMasterName}"
+										class="form-control" placeholder="Enter Discount..." />
+								</div>
+								<button type="submit" class="btn btn-block btn-primary btn-sm">Update</button>
+							</form:form>
+						</c:otherwise>
+						</c:choose>
 				</div>
 			</div>
 			<div class="col-md-3"></div>
@@ -43,7 +66,6 @@
 								<th>Discount Id</th>
 								<th>Discount Name</th>
 								<th>Update</th>
-								<th>Delete</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -51,11 +73,12 @@
 								<tr>
 									<td>${discount.discountMasterId}</td>
 									<td>${discount.dicountMasterName}</td>
-									<td><a href="getDiscountMasterInformationById/${discount.discountMasterId}"><input type="button" value="Update" class="btn btn-primary"></a></td>
-									<td>Delete</td>
+									<td><a
+										href="/ECOMM/getDiscountMasterInformationById/${discount.discountMasterId}"><input
+											type="button" value="Update" class="btn btn-primary"></a></td>
 								</tr>
 							</c:forEach>
- 
+
 						</tbody>
 						<tfoot>
 							<tr>
@@ -71,9 +94,9 @@
 
 		</div>
 
-	<jsp:include page="footer.jsp"></jsp:include>
+		<jsp:include page="footer.jsp"></jsp:include>
 
-<%-- 		<!-- DataTables -->
+		<%-- 		<!-- DataTables -->
 		 
 		<script
 			src="${pageContext.request.contextPath}/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
